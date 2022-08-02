@@ -3,7 +3,7 @@ Implementar la siguiente Base de Datos:
 
 ## DDL
 
-```
+```sql
 create database matriculas;
 use matriculas;
 
@@ -48,7 +48,7 @@ constraint curso_con_matriculados_fk foreign key (id_curso) references curso(id)
 ```
 ## DML
 
-```
+```sql
 insert into estudiante (rut, nombre, email, telefono)
 values ('36596728-8','Lars Schneider','sed.hendrerit@google.org','+56 1 7623 5725'),  
     ('6490579-1','Emerald Neal','parturient.montes.nascetur@yahoo.com','+56 6 8693 3591'),  
