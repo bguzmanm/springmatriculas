@@ -1,8 +1,10 @@
 # Proyecto en Spring Boot
-Implementar la siguiente Base de Datos:
+Antes de comenzar, puedes implementar la siguiente base de datos en MySQL.
+
+![](/images/modelomatriculas.png "Modelo de Datos")
 
 ## DDL
-
+Ejecuta este script para la creación de las tablas.
 ```sql
 create database matriculas;
 use matriculas;
@@ -47,7 +49,7 @@ constraint matriculados_fk foreign key (id_estudiante) references estudiante(id)
 constraint curso_con_matriculados_fk foreign key (id_curso) references curso(id) on delete restrict);
 ```
 ## DML
-
+Ejecuta este script para llenar con datos.
 ```sql
 insert into estudiante (rut, nombre, email, telefono) values 
     ('36596728-8','Lars Schneider','sed.hendrerit@google.org','+56 1 7623 5725'),  
@@ -117,3 +119,5 @@ INSERT INTO matricula (id_estudiante, id_curso, fecha) VALUES
     (19,1, STR_TO_DATE('2021-05-25', '%Y-%m-%d')), 
     (20,2, STR_TO_DATE('2021-05-15', '%Y-%m-%d'));
 ```
+
+## Spring
