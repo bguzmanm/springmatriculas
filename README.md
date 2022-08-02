@@ -4,6 +4,7 @@
 Antes de comenzar, puedes implementar el siguiente modelo de base de datos en MySQL.
 
 ![](/img/modelomatriculas.png "Modelo de Datos")
+
 Los siguientes son los scripts de creación e inserción de datos.
 
 ### DDL
