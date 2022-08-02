@@ -1,9 +1,12 @@
 # Proyecto en Spring Boot
-Antes de comenzar, puedes implementar la siguiente base de datos en MySQL.
 
-![](/images/modelomatriculas.png "Modelo de Datos")
+## Modelo de Datos
+Antes de comenzar, puedes implementar el siguiente modelo de base de datos en MySQL.
 
-## DDL
+![](/img/modelomatriculas.png "Modelo de Datos")
+Los siguientes son los scripts de creación e inserción de datos.
+
+### DDL
 Ejecuta este script para la creación de las tablas.
 ```sql
 create database matriculas;
@@ -48,7 +51,7 @@ primary key (id_estudiante, id_curso),
 constraint matriculados_fk foreign key (id_estudiante) references estudiante(id) on delete restrict,    
 constraint curso_con_matriculados_fk foreign key (id_curso) references curso(id) on delete restrict);
 ```
-## DML
+### DML
 Ejecuta este script para llenar con datos.
 ```sql
 insert into estudiante (rut, nombre, email, telefono) values 
@@ -120,4 +123,46 @@ INSERT INTO matricula (id_estudiante, id_curso, fecha) VALUES
     (20,2, STR_TO_DATE('2021-05-15', '%Y-%m-%d'));
 ```
 
-## Spring
+## Configuración
+Indica en el archivo application.properties lo siguiente
+
+```properties
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/[nombre de base de datos]
+spring.datasource.username=[usuario]
+spring.datasource.password=[clave]
+```
+
+## Ejecución
+
+Start
+
+```shell
+./mvnw spring-boot:start
+```
+
+Stop
+
+```shell
+./mvnw spring-boot:stop
+```
+ Run
+
+```shell
+./mvnw spring-boot:run
+```
+## App
+Hemos implementado una arquitectura basada en MVC, que se compone de los siguientes elementos:
+### Model
+#### Domain
+- **dto**: Data Transfer Object, nos permiten entregar la información requerida por los Request.
+- **repository**: Interfaces que son conocidas por Service.
+- **dervice**: Servicios que satisfacen los requerimientos de los Controladores.
+#### Persistence
+- **crud**: Interfaces que heredan de CrudRepository.
+- **entity**: Clases que implementan el estereotipo @Entity y que mapean las tablas de la base de datos.
+- **mapper**: Interfaces que trabajan con MapStruct y que gestionan el mapeo entre la clase Entity y el DTO. 
+- **repository**: Implementan las interfaces de domain.repository, e utilizan las interfaces crud para relizar el CRUD a la Base de Datos.  
+### Web
+- **controller**: Implementae el esterotipo @Controller, para la interacción con las vistas. 
+- **restcontroller**: Implementa el estereotipo @RestController, para la interacción vía Rest.
