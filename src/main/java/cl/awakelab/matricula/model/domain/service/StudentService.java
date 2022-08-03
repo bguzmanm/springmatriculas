@@ -20,4 +20,19 @@ public class StudentService {
         return repo.findAll();
     }
 
+    public Optional<Student> findById(int studentId){
+        return repo.findById(studentId);
+    }
+    public Student save(Student student){
+        return repo.save(student);
+    }
+
+    public boolean delete(int studentId){
+        return findById(studentId)
+                .map(student -> {
+                    repo.delete(studentId);
+                    return true;})
+                .orElse(false);
+    }
+
 }
